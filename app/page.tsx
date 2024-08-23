@@ -1,113 +1,238 @@
-import Image from "next/image";
+"use client"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { CheckIcon, SearchIcon } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
 
-export default function Home() {
+export default function Component() {
+  const [selectedPlan, setSelectedPlan] = useState("starter")
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
+    <div className='flex flex-col min-h-[100dvh]'>
+      <header className='px-4 lg:px-6 h-14 flex items-center sticky top-0 bg-gray-950 z-50 '>
+        <Link className='flex items-center justify-center' href='#'>
+          <Image src='/icon.svg' alt='logo' width={50} height={50} />
+          <span className='ml-2 text-xl font-bold text-gray-200'>IndieSEO</span>
+        </Link>
+        <nav className='ml-auto flex items-center gap-4 sm:gap-6'>
+          <Link
+            className='text-sm font-medium text-gray-300 hover:text-white transition-colors'
+            href='#pricing'>
+            Pricing
+          </Link>
+          <Link href='/dashboard'>
+            <Button
+              className='bg-white text-gray-950 hover:bg-gray-200'
+              size='sm'>
+              Get Started
+            </Button>
+          </Link>
+        </nav>
+      </header>
+      <main className='flex-1'>
+        <section className='w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-gray-950 text-gray-50'>
+          <div className='container px-4 md:px-6'>
+            <div className='grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]'>
+              <div className='flex flex-col justify-center space-y-4'>
+                <div className='space-y-2'>
+                  <h1 className='text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none'>
+                    Boost Your Website SEO Performance
+                  </h1>
+                  <p className='max-w-[600px] text-gray-400 md:text-xl'>
+                    Comprehensive tools to improve your search rankings and
+                    drive organic traffic.
+                  </p>
+                </div>
+                <div className='flex flex-col gap-2 min-[400px]:flex-row'>
+                  <Button
+                    className='bg-white text-gray-950 hover:bg-gray-200'
+                    size='lg'>
+                    Start Free Trial
+                  </Button>
+                  <Button
+                    variant='outline'
+                    size='lg'
+                    className='border-gray-700 text-gray-300 hover:bg-gray-800'>
+                    Learn More
+                  </Button>
+                </div>
+              </div>
+              <div className='flex items-center justify-center'>
+                {/* <Image
+                  alt='SEO Mastery Dashboard'
+                  className='aspect-video rounded-xl object-cover object-center'
+                  height='300'
+                  src='/dashboard.png'
+                  width='600'
+                /> */}
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id='pricing' className='w-full py-12 md:py-24 lg:py-32'>
+          <div className='container px-4 md:px-6'>
+            <h2 className='text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 '>
+              Choose Your Plan
+            </h2>
+            <div className='grid gap-6 lg:grid-cols-3 lg:gap-8'>
+              <Card
+                className={`flex flex-col ${
+                  selectedPlan === "starter"
+                    ? "border-gray-900"
+                    : "border-gray-200"
+                }`}>
+                <CardHeader>
+                  <CardTitle>Starter</CardTitle>
+                  <CardDescription>
+                    For individuals and small websites
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className='flex-grow'>
+                  <p className='text-3xl font-bold'>
+                    $29
+                    <span className='text-lg font-normal text-gray-500'>
+                      /month
+                    </span>
+                  </p>
+                  <ul className='mt-4 space-y-2 flex-grow'>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      Basic keyword research
+                    </li>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      Site audit
+                    </li>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      Weekly reports
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button
+                    className='w-full'
+                    onClick={() => setSelectedPlan("starter")}>
+                    Choose Starter
+                  </Button>
+                </CardFooter>
+              </Card>
+              <Card
+                className={`flex flex-col ${
+                  selectedPlan === "pro" ? "border-gray-900" : "border-gray-200"
+                }`}>
+                <CardHeader>
+                  <CardTitle>Pro</CardTitle>
+                  <CardDescription>For growing businesses</CardDescription>
+                </CardHeader>
+                <CardContent className='flex-grow'>
+                  <p className='text-3xl font-bold'>
+                    $79
+                    <span className='text-lg font-normal text-gray-500'>
+                      /month
+                    </span>
+                  </p>
+                  <ul className='mt-4 space-y-2 flex-grow'>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      Advanced keyword research
+                    </li>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      Competitor analysis
+                    </li>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      Daily reports
+                    </li>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      Content optimization
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button
+                    className='w-full'
+                    onClick={() => setSelectedPlan("pro")}>
+                    Choose Pro
+                  </Button>
+                </CardFooter>
+              </Card>
+              <Card
+                className={`flex flex-col ${
+                  selectedPlan === "enterprise"
+                    ? "border-gray-900"
+                    : "border-gray-200"
+                }`}>
+                <CardHeader>
+                  <CardTitle>Enterprise</CardTitle>
+                  <CardDescription>For large-scale operations</CardDescription>
+                </CardHeader>
+                <CardContent className='flex-grow'>
+                  <p className='text-3xl font-bold'>
+                    $199
+                    <span className='text-lg font-normal text-gray-500'>
+                      /month
+                    </span>
+                  </p>
+                  <ul className='mt-4 space-y-2 flex-grow'>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      All Pro features
+                    </li>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      API access
+                    </li>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      Dedicated account manager
+                    </li>
+                    <li className='flex items-center'>
+                      <CheckIcon className='mr-2 h-4 w-4 text-green-500' />
+                      Custom reporting
+                    </li>
+                  </ul>
+                </CardContent>
+                <CardFooter>
+                  <Button
+                    className='w-full'
+                    onClick={() => setSelectedPlan("enterprise")}>
+                    Choose Enterprise
+                  </Button>
+                </CardFooter>
+              </Card>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer className='flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t'>
+        <p className='text-xs text-gray-500'>
+          © 2024 SEO Mastery. All rights reserved.
         </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+        <nav className='sm:ml-auto flex gap-4 sm:gap-6'>
+          <Link
+            className='text-xs hover:underline underline-offset-4 text-gray-500'
+            href='#'>
+            Terms of Service
+          </Link>
+          <Link
+            className='text-xs hover:underline underline-offset-4 text-gray-500'
+            href='#'>
+            Privacy Policy
+          </Link>
+        </nav>
+      </footer>
+    </div>
+  )
 }
