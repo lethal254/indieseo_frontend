@@ -1,3 +1,4 @@
+import { APIurl } from "@/apiconfig"
 import axios from "axios"
 import { create } from "zustand"
 import { devtools } from "zustand/middleware"
@@ -30,7 +31,7 @@ const useUserStore = create<StoreState>()(
     fetchUser: async () => {
       set({ loading: true, error: null })
       try {
-        const { data } = await axios.get(`https://indieseo.onrender.com/user`, {
+        const { data } = await axios.get(`${APIurl}/user`, {
           withCredentials: true,
         })
         set({ user: data.user, loading: false })
@@ -44,12 +45,9 @@ const useUserStore = create<StoreState>()(
     logoutUser: async () => {
       set({ loading: true, error: null })
       try {
-        const { data } = await axios.get(
-          `https://indieseo.onrender.com/auth/logout`,
-          {
-            withCredentials: true,
-          }
-        )
+        const { data } = await axios.get(`${APIurl}/auth/logout`, {
+          withCredentials: true,
+        })
         set({ user: null, loading: false })
       } catch (error) {
         set({ error: (error as Error).message, loading: false })

@@ -22,14 +22,12 @@ import { useQuery } from "@tanstack/react-query"
 import useWebsiteStore from "@/hooks/WebsiteStore" // Import the Zustand store
 import { IWebsite } from "../Tables/WebsitesTable"
 import Link from "next/link"
+import { APIurl } from "@/apiconfig"
 
 const fetchWebsites = async (): Promise<IWebsite[]> => {
-  const response = await axios.get(
-    "https://indieseo.onrender.com/website/all",
-    {
-      withCredentials: true,
-    }
-  )
+  const response = await axios.get(`${APIurl}/website/all`, {
+    withCredentials: true,
+  })
   return response.data.result
 }
 

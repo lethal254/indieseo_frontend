@@ -1,6 +1,7 @@
 import axios from "axios"
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
+import { APIurl } from "./apiconfig"
 
 // Define the routes that require authentication and subscription
 const protectedRoutes = ["/dashboard"]
@@ -22,7 +23,7 @@ export async function middleware(req: NextRequest) {
 
     try {
       // Make a request to your backend to check if the user is authenticated
-      const response = await axios.get(`https://indieseo.onrender.com/user`, {
+      const response = await axios.get(`${APIurl}/user`, {
         withCredentials: true,
         headers: {
           Cookie: `connect.sid=${sessionCookie}`,

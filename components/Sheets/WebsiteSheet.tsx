@@ -25,6 +25,7 @@ import {
 } from "../ui/form"
 import axios from "axios"
 import { toast } from "sonner"
+import { APIurl } from "@/apiconfig"
 
 const formSchema = z.object({
   domain: z.string().min(3).max(50),
@@ -47,13 +48,9 @@ const WebsiteSheet = ({
   })
   const mutation = useMutation({
     mutationFn: async (data: z.infer<typeof formSchema>) => {
-      const response = await axios.post(
-        "https://indieseo.onrender.com/website/create",
-        data,
-        {
-          withCredentials: true,
-        }
-      )
+      const response = await axios.post(`${APIurl}/website/create`, data, {
+        withCredentials: true,
+      })
       return response.data
     },
     onSuccess: (data) => {

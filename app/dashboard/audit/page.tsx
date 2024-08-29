@@ -1,5 +1,6 @@
 "use client"
 
+import { APIurl } from "@/apiconfig"
 import WebsiteSheet from "@/components/Sheets/WebsiteSheet"
 import WebsitesTable, { IWebsite } from "@/components/Tables/WebsitesTable"
 import { Button } from "@/components/ui/button"
@@ -10,12 +11,9 @@ import { LoaderPinwheel, Plus } from "lucide-react"
 import React, { useState } from "react"
 
 const fetchWebsites = async (): Promise<IWebsite[]> => {
-  const response = await axios.get(
-    "https://indieseo.onrender.com/website/all",
-    {
-      withCredentials: true,
-    }
-  ) // Adjust the URL based on your API route
+  const response = await axios.get(`${APIurl}/website/all`, {
+    withCredentials: true,
+  }) // Adjust the URL based on your API route
   return response.data.result
 }
 

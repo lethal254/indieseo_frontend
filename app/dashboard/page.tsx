@@ -10,12 +10,12 @@ import MetricCard from "@/components/cards/Scorecard" // Assuming you saved the 
 import { Gauge, TrendingUp, Accessibility, ShieldCheck } from "lucide-react" // Import appropriate icons
 import { MetricsChart } from "@/components/Charts/MetricsCharts"
 import { Card, CardContent } from "@/components/ui/card"
+import { APIurl } from "@/apiconfig"
 
 async function fetchAuditResults(websiteid: number) {
-  const { data } = await axios.get(
-    `https://indieseo.onrender.com/audit_results/${websiteid}`,
-    { withCredentials: true }
-  )
+  const { data } = await axios.get(`${APIurl}/audit_results/${websiteid}`, {
+    withCredentials: true,
+  })
   return data
 }
 

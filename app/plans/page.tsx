@@ -18,15 +18,13 @@ import { useEffect, useState } from "react"
 import useUserStore from "@/hooks/userStore"
 import { toast } from "sonner"
 import { LoaderPinwheel } from "lucide-react"
+import { APIurl } from "@/apiconfig"
 
 // Fetch plans from server
 const fetchPlans = async () => {
-  const response = await axios.get(
-    "https://indieseo.onrender.com/payment/fetch_plans",
-    {
-      withCredentials: true,
-    }
-  )
+  const response = await axios.get(`${APIurl}/payment/fetch_plans`, {
+    withCredentials: true,
+  })
   return response.data.result.data
 }
 
@@ -41,7 +39,7 @@ const initiatePayment = async ({
   plan: string
 }) => {
   const response = await axios.post(
-    "https://indieseo.onrender.com/payment/initiate_payment",
+    `${APIurl}/payment/initiate_payment`,
     {
       email,
       amount,
@@ -63,7 +61,7 @@ const subscribeUser = async ({
   plan: string
 }) => {
   const response = await axios.post(
-    "https://indieseo.onrender.com/payment/subscribe",
+    `${APIurl}/payment/subscribe`,
     {
       customerId,
       plan,

@@ -5,6 +5,7 @@ import axios from "axios"
 import { useQuery, useMutation } from "@tanstack/react-query"
 import { CheckCircle, LoaderPinwheel } from "lucide-react"
 import useAuditStore from "@/hooks/AuditStore"
+import { APIurl } from "@/apiconfig"
 
 interface AuditStatus {
   status: string
@@ -14,7 +15,7 @@ interface AuditStatus {
 // Function to start the audit and fetch the job ID
 const fetchAuditJob = async (url: string) => {
   const response = await axios.get(
-    `https://indieseo.onrender.com/audit?url=${encodeURIComponent(url)}`,
+    `${APIurl}/audit?url=${encodeURIComponent(url)}`,
     {
       withCredentials: true,
     }
@@ -28,7 +29,7 @@ const fetchAuditStatus = async (
   websiteId: number
 ): Promise<AuditStatus> => {
   const response = await axios.post(
-    `https://indieseo.onrender.com/audit/status/${jobId}`,
+    `${APIurl}/audit/status/${jobId}`,
     { websiteId },
     {
       withCredentials: true,

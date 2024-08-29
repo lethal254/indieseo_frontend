@@ -3,11 +3,12 @@ import React from "react"
 import { cn } from "@/lib/utils"
 import { IconBrandGoogle } from "@tabler/icons-react"
 import axios from "axios"
+import { APIurl } from "@/apiconfig"
 
 export default function SignupFormDemo() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    window.location.href = "https://indieseo.onrender.com/auth/google"
+    window.location.href = `${APIurl}/auth/google`
   }
   return (
     <div className='max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black'>

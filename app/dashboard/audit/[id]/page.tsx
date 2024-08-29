@@ -9,17 +9,15 @@ import AuditButton from "@/components/Buttons/AuditButton"
 import MetricCard from "@/components/cards/MetricCard"
 import ScoresCard from "@/components/cards/ScoresCard"
 import CriticalAuditsTable from "@/components/Tables/CrititcalIssuesTable"
+import { APIurl } from "@/apiconfig"
 
 const fetchWebsites = async (id: number): Promise<IWebsite> => {
-  const response = await axios.get(
-    `https://indieseo.onrender.com/website/${id}`,
-    {
-      withCredentials: true,
-      headers: {
-        Cookie: `connect.sid=${cookies().get("connect.sid")?.value}`,
-      },
-    }
-  ) // Adjust the URL based on your API route
+  const response = await axios.get(`${APIurl}/website/${id}`, {
+    withCredentials: true,
+    headers: {
+      Cookie: `connect.sid=${cookies().get("connect.sid")?.value}`,
+    },
+  }) // Adjust the URL based on your API route
   return response.data.result
 }
 
