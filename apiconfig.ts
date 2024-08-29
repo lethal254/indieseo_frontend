@@ -1,1 +1,1 @@
-export const APIurl = "http://localhost:4000"
+export const APIurl = "https://indieseo.onrender.com"
